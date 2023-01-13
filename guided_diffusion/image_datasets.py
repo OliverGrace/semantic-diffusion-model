@@ -51,6 +51,10 @@ def load_data(
         all_files = _list_image_files_recursively(os.path.join(data_dir, 'images', 'training' if is_train else 'validation'))
         classes = _list_image_files_recursively(os.path.join(data_dir, 'annotations', 'training' if is_train else 'validation'))
         instances = None
+    elif dataset_mode == 'coco':
+        all_files = _list_image_files_recursively(os.path.join(data_dir, 'train' if is_train else 'val'+'_img'))
+        classes = _list_image_files_recursively(os.path.join(data_dir, 'train' if is_train else 'val'+'_label'))
+        instances = _list_image_files_recursively(os.path.join(data_dir, 'train' if is_train else 'val'+'_inst'))
     elif dataset_mode == 'celeba':
         # The edge is computed by the instances.
         # However, the edge get from the labels and the instances are the same on CelebA.
